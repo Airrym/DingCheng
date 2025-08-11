@@ -1,0 +1,30 @@
+<view class="container" style="padding:24rpx 24rpx 120rpx;">
+  <view class="card" style="background:var(--primary);color:#fff;">
+    <view class="row">
+      <text style="font-size:32rpx;font-weight:700;">{{profile.name}}</text>
+      <button class="tag" style="background:rgba(255,255,255,.2);color:#fff;border:0;" bindtap="edit">编辑</button>
+    </view>
+    <text style="opacity:.9;">{{profile.position}} | {{profile.ship}}</text>
+  </view>
+
+  <view class="card" style="margin-top:24rpx;">
+    <text style="font-weight:600;">个人信息</text>
+    <view class="divider"/>
+    <view class="row"><text class="muted">联系电话：</text><text>{{profile.phone}}</text></view>
+    <view class="row"><text class="muted">邮箱：</text><text>{{profile.email}}</text></view>
+    <view class="row"><text class="muted">常用收货地址：</text><text style="text-align:right;">{{profile.address}}</text></view>
+  </view>
+
+  <view class="card" style="margin-top:24rpx;">
+    <view class="row"><text style="font-weight:600;">历史订单</text><button class="tag">查看全部</button></view>
+    <view class="divider"/>
+    <block wx:for="{{orderList}}" wx:key="id">
+      <view style="border:1px solid #eee;border-radius:12rpx;padding:16rpx;margin-bottom:16rpx;">
+        <view class="row"><text style="font-weight:600;">订单 #{{item.id}}</text><text class="tag">{{item.status}}</text></view>
+        <text class="muted" style="display:block;font-size:24rpx;margin:8rpx 0;">{{item.date}}</text>
+        <text class="muted" style="display:block;font-size:24rpx;margin-bottom:8rpx;">{{item.summary}}</text>
+        <view class="row"><text style="color:var(--primary);font-weight:600;">¥{{item.totalAmount}}</text><button class="tag" data-id="{{item.id}}" bindtap="detail">查看详情</button></view>
+      </view>
+    </block>
+  </view>
+</view>
