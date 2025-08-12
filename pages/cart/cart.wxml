@@ -1,0 +1,51 @@
+<view class="cart-page">
+  <!-- 购物车头部 -->
+  <view class="cart-header">
+    <view class="header-left">
+      <checkbox class="select-all-checkbox" checked="{{selectAll}}" bindchange="toggleSelectAll" />
+      <text class="header-title">购物车</text>
+    </view>
+    <view class="header-right" bindtap="clearCart">
+      <image src="/images/icon-trash.png" class="trash-icon" />
+      <text>清空</text>
+    </view>
+  </view>
+
+  <!-- 空购物车状态 -->
+  <view class="empty-cart" wx:if="{{cart.length === 0}}">
+    <image src="/images/icon-empty-cart.png" class="empty-icon" />
+    <text class="empty-text">购物车是空的</text>
+    <text class="empty-hint">快去添加商品吧</text>
+    <button class="go-shopping-btn" bindtap="goShopping">去下单</button>
+  </view>
+
+  <!-- 购物车商品列表 -->
+  <scroll-view class="cart-items" scroll-y wx:if="{{cart.length > 0}}">
+    <view class="cart-item" wx:for="{{cart}}" wx:key="id">
+      <checkbox class="item-checkbox" checked="{{item.selected}}" bindchange="toggleItemSelect" data-id="{{item.id}}" />
+      
+      <view class="item-info">
+        <text class="item-name">{{item.name}}</text>
+        <text class="item-spec">{{item.unit}} · ¥{{item.price}}</text>
+      </view>
+      
+      <view class="item-actions">
+        <view class="quantity-control">
+          <button class="quantity-btn decrease" bindtap="decreaseQuantity" data-id="{{item.id}}">-</button>
+          <text class="quantity">{{item.quantity}}</text>
+          <button class="quantity-btn increase" bindtap="increaseQuantity" data-id="{{item.id}}">+</button>
+        </view>
+        <image src="/images/icon-trash.png" class="remove-btn" bindtap="removeItem" data-id="{{item.id}}" />
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 结算区域 -->
+  <view class="checkout-bar" wx:if="{{cart.length > 0}}">
+    <view class="checkout-info">
+      <text>已选 {{selectedCount}} 件商品：</text>
+      <text class="total-amount">¥{{totalAmount}}</text>
+    </view>
+    <button class="checkout-btn" bindtap="goToCheckout">提交订单</button>
+  </view>
+</view>

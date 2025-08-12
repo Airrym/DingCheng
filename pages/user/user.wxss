@@ -1,0 +1,248 @@
+/* pages/user/user.wxss */
+.page-container {
+    padding: 15px;
+    background-color: #f5f7fa;
+    min-height: 100vh;
+  }
+  
+  /* 个人信息卡片样式 */
+  .profile-card {
+    background-color: #0A3D91;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .absolute-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .circle-top {
+    width: 96px;
+    height: 96px;
+    top: -48px;
+    right: -48px;
+  }
+  
+  .circle-bottom {
+    width: 64px;
+    height: 64px;
+    bottom: -32px;
+    left: -32px;
+  }
+  
+  .profile-header {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+  }
+  
+  .profile-info {
+    flex: 1;
+  }
+  
+  .name {
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
+  }
+  
+  .position-ship {
+    font-size: 13px;
+    opacity: 0.8;
+  }
+  
+  .edit-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+  
+  .edit-btn::after {
+    border: none;
+  }
+  
+  /* 信息卡片样式 */
+  .info-card, .order-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .card-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #1D2129;
+    margin-bottom: 12px;
+  }
+  
+  .info-list {
+    font-size: 14px;
+  }
+  
+  .info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #E5E6EB;
+  }
+  
+  .info-item:last-child {
+    border-bottom: none;
+  }
+  
+  .info-label {
+    color: #86909C;
+  }
+  
+  .info-value {
+    color: #1D2129;
+    text-align: right;
+  }
+  
+  /* 订单卡片样式 */
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  
+  .view-all {
+    font-size: 13px;
+    color: #0A3D91;
+  }
+  
+  .order-item {
+    border: 1px solid #E5E6EB;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+  
+  .order-number {
+    font-weight: 500;
+    font-size: 14px;
+    display: block;
+  }
+  
+  .order-date {
+    font-size: 12px;
+    color: #86909C;
+  }
+  
+  .order-status {
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  
+  .order-products {
+    font-size: 13px;
+    color: #4E5969;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  .order-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .order-total {
+    font-weight: bold;
+    color: #0A3D91;
+    font-size: 16px;
+  }
+  
+  .order-actions {
+    display: flex;
+  }
+  
+  .action-detail, .action-review {
+    font-size: 12px;
+    margin-left: 10px;
+    color: #0A3D91;
+  }
+  
+  .action-review {
+    color: #FF7D00;
+  }
+  
+  /* 状态样式 */
+  .bg-yellow-100 {
+    background-color: #FFF8E6;
+    color: #FF9900;
+  }
+  
+  .bg-green-100 {
+    background-color: #E8FFEA;
+    color: #00B42A;
+  }
+  
+  .bg-neutral-100 {
+    background-color: #F2F3F5;
+    color: #86909C;
+  }
+
+/* 行内编辑按钮样式 */
+.info-value-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .inline-edit-btn {
+    display: inline-flex;
+    margin-left: 8px;
+    padding: 0;
+    background: none;
+    border: none;
+    line-height: 1;
+  }
+  
+  .inline-edit-btn::after {
+    border: none;
+  }

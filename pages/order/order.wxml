@@ -1,0 +1,154 @@
+<view class="order-page">
+  <!-- 采购类型选择 -->
+  <view class="purchase-type">
+    <view 
+      class="type-btn {{purchaseType === 'bulk' ? 'active' : ''}}" 
+      bindtap="switchPurchaseType" 
+      data-type="bulk"
+    >
+      船舶集采
+    </view>
+    <view 
+      class="type-btn {{purchaseType === 'personal' ? 'active' : ''}}" 
+      bindtap="switchPurchaseType" 
+      data-type="personal"
+    >
+      个人采购
+    </view>
+  </view>
+  
+  <!-- 下单注意事项 -->
+  <view class="notice-box">
+    <view class="notice-title">
+      <icon type="warn" size="16" color="#FF7D00"></icon>
+      <text>下单注意事项</text>
+    </view>
+    <view class="notice-list">
+      <view class="notice-item">
+        <icon type="success" size="14" color="#0A3D91"></icon>
+        <text>请提前48小时提交港口补给订单</text>
+      </view>
+      <view class="notice-item">
+        <icon type="success" size="14" color="#0A3D91"></icon>
+        <text>船舶集采需船长或大副确认</text>
+      </view>
+      <view class="notice-item">
+        <icon type="success" size="14" color="#0A3D91"></icon>
+        <text>个人采购金额上限为500美元</text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 商品列表 -->
+  <view class="product-list-container">
+    <!-- 搜索框 -->
+    <view class="search-box">
+      <icon type="search" size="16" color="#86909C"></icon>
+      <input 
+        placeholder="搜索商品..." 
+        placeholder-class="placeholder"
+        bindinput="handleSearch"
+      />
+    </view>
+    
+    <!-- 分类导航菜单 -->
+    <scroll-view scroll-x class="category-scroll">
+      <view 
+        class="category-btn {{currentCategory === 'all' ? 'active' : ''}}" 
+        bindtap="switchCategory" 
+        data-category="all"
+      >
+        全部商品
+      </view>
+      <view 
+        class="category-btn {{currentCategory === 'grains' ? 'active' : ''}}" 
+        bindtap="switchCategory" 
+        data-category="grains"
+      >
+        粮油米面
+      </view>
+      <view 
+        class="category-btn {{currentCategory === 'meat' ? 'active' : ''}}" 
+        bindtap="switchCategory" 
+        data-category="meat"
+      >
+        肉类
+      </view>
+      <view 
+        class="category-btn {{currentCategory === 'vegetables' ? 'active' : ''}}" 
+        bindtap="switchCategory" 
+        data-category="vegetables"
+      >
+        蔬菜水果
+      </view>
+      <view 
+        class="category-btn {{currentCategory === 'drinks' ? 'active' : ''}}" 
+        bindtap="switchCategory" 
+        data-category="drinks"
+      >
+        饮品
+      </view>
+      <view 
+        class="category-btn {{currentCategory === 'daily' ? 'active' : ''}}" 
+        bindtap="switchCategory" 
+        data-category="daily"
+      >
+        日用品
+      </view>
+    </scroll-view>
+    
+    <view class="product-list-title">商品列表</view>
+    
+    <!-- 商品列表 -->
+    <scroll-view scroll-y class="product-list" style="height: {{scrollHeight}}px">
+      <block wx:for="{{filteredProducts}}" wx:key="id">
+        <view class="product-item">
+          <view class="product-info">
+            <view class="product-name">{{item.name}}</view>
+            <view class="product-unit">{{item.unit}}</view>
+          </view>
+          <view class="product-action">
+            <view class="product-price">¥{{item.price}}</view>
+            <view 
+              class="cart-count-badge {{item.cartCount > 0 ? 'show' : ''}}"
+              wx:if="{{item.cartCount > 0}}"
+            >
+              {{item.cartCount}}
+            </view>
+            <button 
+              class="add-btn" 
+              bindtap="showQuantityModal" 
+              data-id="{{item.id}}"
+              data-name="{{item.name}}"
+              data-unit="{{item.unit}}"
+              data-price="{{item.price}}"
+            >
+              <icon type="add" size="16" color="#0A3D91"></icon>
+            </button>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</view>
+
+<!-- 数量选择弹窗 -->
+<view class="modal {{showModal ? 'show' : ''}}">
+  <view class="modal-mask" bindtap="hideQuantityModal"></view>
+  <view class="modal-content">
+    <view class="modal-title">{{selectedProduct.name}} ({{selectedProduct.unit}})</view>
+    <view class="quantity-control">
+      <button class="quantity-btn" bindtap="decreaseQuantity">
+        <icon type="minus" size="16" color="#4E5969"></icon>
+      </button>
+      <view class="quantity-display">{{currentQuantity}}</view>
+      <button class="quantity-btn" bindtap="increaseQuantity">
+        <icon type="add" size="16" color="#4E5969"></icon>
+      </button>
+    </view>
+    <view class="modal-buttons">
+      <button class="cancel-btn" bindtap="hideQuantityModal">取消</button>
+      <button class="confirm-btn" bindtap="confirmAddToCart">确认</button>
+    </view>
+  </view>
+</view>

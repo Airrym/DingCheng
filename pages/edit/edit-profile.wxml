@@ -1,0 +1,110 @@
+<!-- pages/edit-profile/edit-profile.wxml -->
+<view class="page-container">
+  <view class="form-card">
+    <view class="card-title">编辑个人信息</view>
+    
+    <form bindsubmit="saveProfile">
+      <!-- 姓名输入框 -->
+      <view class="form-item">
+        <text class="form-label">姓名</text>
+        <view class="input-container">
+          <input 
+            name="name" 
+            type="text" 
+            value="{{profileInfo.name}}" 
+            placeholder="请输入姓名"
+            class="form-input"
+          />
+          <icon type="edit" size="16" color="#0A3D91" class="input-icon"></icon>
+        </view>
+        <text class="error-text" wx:if="{{errors.name}}">请输入姓名</text>
+      </view>
+      
+      <!-- 职位输入框 -->
+      <view class="form-item">
+        <text class="form-label">职位</text>
+        <view class="input-container">
+          <input 
+            name="position" 
+            type="text" 
+            value="{{profileInfo.position}}" 
+            placeholder="请输入职位"
+            class="form-input"
+          />
+          <icon type="edit" size="16" color="#0A3D91" class="input-icon"></icon>
+        </view>
+        <text class="error-text" wx:if="{{errors.position}}">请输入职位</text>
+      </view>
+      
+      <!-- 船名输入框 -->
+      <view class="form-item">
+        <text class="form-label">船名</text>
+        <view class="input-container">
+          <input 
+            name="ship" 
+            type="text" 
+            value="{{profileInfo.ship}}" 
+            placeholder="请输入船名"
+            class="form-input"
+          />
+          <icon type="edit" size="16" color="#0A3D91" class="input-icon"></icon>
+        </view>
+        <text class="error-text" wx:if="{{errors.ship}}">请输入船名</text>
+      </view>
+      
+      <!-- 联系电话输入框 -->
+      <view class="form-item">
+        <text class="form-label">联系电话</text>
+        <view class="input-container">
+          <input 
+            name="phone" 
+            type="number" 
+            value="{{profileInfo.phone}}" 
+            placeholder="请输入联系电话"
+            class="form-input"
+          />
+          <icon type="edit" size="16" color="#0A3D91" class="input-icon"></icon>
+        </view>
+        <text class="error-text" wx:if="{{errors.phone}}">请输入有效的联系电话</text>
+      </view>
+      
+      <!-- 邮箱输入框 -->
+      <view class="form-item">
+        <text class="form-label">邮箱</text>
+        <view class="input-container">
+          <input 
+            name="email" 
+            type="email" 
+            value="{{profileInfo.email}}" 
+            placeholder="请输入邮箱"
+            class="form-input"
+          />
+          <icon type="edit" size="16" color="#0A3D91" class="input-icon"></icon>
+        </view>
+        <text class="error-text" wx:if="{{errors.email}}">请输入有效的邮箱地址</text>
+      </view>
+      
+      <!-- 收货地址输入框 -->
+      <view class="form-item">
+        <text class="form-label">常用收货地址</text>
+        <view class="input-container">
+          <input 
+            name="address" 
+            type="text" 
+            value="{{profileInfo.address}}" 
+            placeholder="请输入常用收货地址"
+            class="form-input"
+          />
+          <icon type="edit" size="16" color="#0A3D91" class="input-icon"></icon>
+        </view>
+        <text class="error-text" wx:if="{{errors.address}}">请输入收货地址</text>
+      </view>
+      
+      <!-- 操作按钮 -->
+      <view class="form-buttons">
+        <button form-type="reset" class="cancel-btn" bindtap="cancelEdit">取消</button>
+        <button form-type="submit" class="submit-btn">保存信息</button>
+      </view>
+    </form>
+  </view>
+</view>
