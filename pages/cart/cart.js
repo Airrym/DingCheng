@@ -211,7 +211,7 @@ Page({
       }
       
       wx.navigateTo({
-        url: '/pages/checkout/checkout'
+        url: '/pages/confirm/confirm'
       });
     }
   });
