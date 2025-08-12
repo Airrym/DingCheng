@@ -1,0 +1,103 @@
+<view class="container" style="padding:24rpx 24rpx 120rpx;">
+  <view class="card" style="margin-bottom:24rpx;">
+    <view class="row">
+      <button class="seg-btn {{purchaseType==='bulk'?'active':''}}"
+        bindtap="chooseType" data-type="bulk">船舶集采</button>
+<button class="seg-btn right {{purchaseType==='personal'?'active':''}}"
+        bindtap="chooseType" data-type="personal">个人采购</button>
+        
+    </view>
+    <view class="notice" style="margin-top:16rpx;">
+  <view class="notice-title">
+    <icon type="warn" size="16" color="#FF8A00"></icon>
+    <text class="notice-title-text">下单注意事项</text>
+  </view>
+  <view class="notice-item">
+    <icon type="success_no_circle" size="16" color="#0A3D91"></icon>
+    <text class="notice-text">请提前48小时提交港口补给订单</text>
+  </view>
+  <view class="notice-item">
+    <icon type="success_no_circle" size="16" color="#0A3D91"></icon>
+    <text class="notice-text">船舶集采需船长或大副确认</text>
+  </view>
+  <view class="notice-item">
+    <icon type="success_no_circle" size="16" color="#0A3D91"></icon>
+    <text class="notice-text">个人采购金额上限为500美元</text>
+  </view>
+</view>
+
+    <view style="height:16rpx"></view>
+    <input class="input" placeholder="搜索商品..." bindinput="onSearch"/>
+
+    <scroll-view class="cat-scroll"
+               scroll-x
+               enable-flex
+               enhanced
+               show-scrollbar="{{false}}"
+               scroll-into-view="{{'cat-' + currentCategory}}">
+    <!-- 假设 categories = [{ key:'all', name:'全部' }, ... ] -->
+    <view class="cat-item {{currentCategory===item.key?'active':''}}"
+          id="cat-{{item.key}}"
+          wx:for="{{categories}}"
+          wx:key="key"
+          data-key="{{item.key}}"
+          bindtap="onCategory">
+      <text class="cat-text">{{item.name}}</text>
+    </view>
+  </scroll-view>
+  </view>
+
+  <view class="card">
+    <text style="font-weight:600;">商品列表</text>
+    <view class="divider"></view>
+    <block wx:for="{{filtered}}" wx:key="id">
+      <view class="row" style="padding:20rpx 0;border-bottom:1px solid #eee;">
+        <view>
+          <text style="font-weight:600;">{{item.name}}</text>
+          <text class="muted" style="display:block;font-size:24rpx;">{{item.unit}}</text>
+        </view>
+        <view style="display:flex;align-items:center;">
+          <text style="color:#0A3D91;font-weight:600;margin-right:16rpx;">¥{{item.price}}</text>
+          <view wx:if="{{item.badge>0}}" class="badge" style="background:#FFF2E8;color:#FF7D00;margin-right:8rpx;">{{item.badge}}</view>
+          <!-- 改为数量弹窗入口 -->
+          <button class="btn"
+                  style="width:72rpx;height:72rpx;border-radius:9999rpx;background:#EAF2FF;color:#0A3D91;"
+                  bindtap="showQuantityModal"
+                  data-id="{{item.id}}">＋</button>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<!-- 数量选择弹窗 -->
+<view wx:if="{{showQty}}">
+  <!-- 遮罩 -->
+  <view style="position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,0.45);z-index:999;"
+        catchtouchmove="true" bindtap="cancelQty"></view>
+
+  <!-- 弹窗体（关键：style 全部放一行，避免插入异常字符） -->
+  <view style="position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:600rpx;background:#ffffff;border-radius:24rpx;padding:32rpx;z-index:1000;box-shadow:0 10rpx 40rpx rgba(0,0,0,0.08);">
+    <view style="font-size:32rpx;color:#222222;font-weight:600;margin-bottom:24rpx;">
+      {{pending.name}}<text wx:if="{{pending.unit}}" style="font-size:26rpx;color:#666666;font-weight:400;">（{{pending.unit}}）</text>
+    </view>
+
+    <!-- 数量控制 -->
+    <view style="display:flex;align-items:center;justify-content:center;gap:24rpx;margin:24rpx 0 36rpx;">
+      <button style="width:72rpx;height:72rpx;border-radius:50%;background:#f5f6f8;border:none;color:#0A3D91;font-size:40rpx;line-height:72rpx;text-align:center;"
+              bindtap="decQty">-</button>
+      <input type="number" value="{{qty}}" bindinput="onQtyInput"
+             style="width:120rpx;height:72rpx;text-align:center;border:1rpx solid #e6e8eb;border-radius:12rpx;font-size:32rpx;" />
+      <button style="width:72rpx;height:72rpx;border-radius:50%;background:#0A3D91;border:none;color:#ffffff;font-size:40rpx;line-height:72rpx;text-align:center;"
+              bindtap="incQty">+</button>
+    </view>
+
+    <!-- 底部按钮 -->
+    <view style="display:flex;gap:20rpx;">
+      <button style="flex:1;height:76rpx;line-height:76rpx;border-radius:16rpx;background:#ffffff;border:1rpx solid #e6e8eb;color:#333333;"
+              bindtap="cancelQty">取消</button>
+      <button style="flex:1;height:76rpx;line-height:76rpx;border-radius:16rpx;background:#0A3D91;color:#ffffff;border:none;"
+              bindtap="confirmQty">确认</button>
+    </view>
+  </view>
+</view>

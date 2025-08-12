@@ -1,0 +1,62 @@
+/* WXSS */
+.steps-container {
+    padding: 20px;
+  }
+  
+  .step-item {
+    display: flex;
+    margin-bottom: 20px;
+    align-items: flex-start;
+  }
+  
+  .step-number {
+    width: 24px;
+    height: 24px;
+    background-color: #0A3D91;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+  
+  .step-content {
+    flex: 1;
+  }
+  
+  .step-title {
+    font-weight: 500;
+    margin-bottom: 4px;
+    font-size: 16px;
+  }
+  
+  .step-desc {
+    color: #666;
+    font-size: 14px;
+  }
+  /* 在原有CSS基础上添加 */
+.step-item {
+    position: relative;
+    padding-left: 36px;
+  }
+  
+  .step-number {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+  }
+  
+  .step-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 24px;
+    bottom: -20px;
+    width: 1px;
+    background-color: #ced8e9;
+    z-index: 1;
+  }

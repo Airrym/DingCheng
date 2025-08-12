@@ -1,0 +1,93 @@
+<!-- pages/user/user.wxml -->
+<view class="page-container">
+  <!-- 个人信息卡片 -->
+  <view class="profile-card">
+    <view class="absolute-bg">
+      <view class="circle circle-top"></view>
+      <view class="circle circle-bottom"></view>
+    </view>
+    
+    <view class="profile-header">
+      <view class="avatar">
+        <icon type="user" size="32" color="#fff"></icon>
+      </view>
+      <view class="profile-info">
+        <text class="name">{{profileInfo.name}}</text>
+        <text class="position-ship">{{profileInfo.position}} | {{profileInfo.ship}}</text>
+      </view>
+      <button class="edit-btn" bindtap="goToEditProfile" hover-class="none">
+        <icon type="edit" size="16" color="#fff"></icon>
+      </button>
+    </view>
+  </view>
+
+  <!-- 个人信息详情 -->
+  <view class="info-card">
+    <view class="card-title">个人信息</view>
+    <view class="info-list">
+      <view class="info-item">
+        <text class="info-label">姓名：</text>
+        <text class="info-value">{{profileInfo.name}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">职位：</text>
+        <text class="info-value">{{profileInfo.position}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">船名：</text>
+        <text class="info-value">{{profileInfo.ship}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">联系电话：</text>
+        <text class="info-value">{{profileInfo.phone}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">邮箱：</text>
+        <text class="info-value">{{profileInfo.email}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">常用收货地址：</text>
+        <text class="info-value">{{profileInfo.address}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 历史订单 -->
+  <view class="order-card">
+    <view class="card-header">
+      <text class="card-title">历史订单</text>
+      <text class="view-all" bindtap="viewAllOrders">查看全部</text>
+    </view>
+    
+    <view class="order-list">
+      <block wx:for="{{orders}}" wx:key="id" wx:if="{{index < 3}}">
+        <view class="order-item">
+          <view class="order-header">
+            <view>
+              <text class="order-number">订单 #{{item.id}}</text>
+              <text class="order-date">{{item.date}}</text>
+            </view>
+            <text class="order-status {{item.statusClass}}">{{item.status}}</text>
+          </view>
+          
+          <text class="order-products">{{formatProducts(item.products)}}</text>
+          
+          <view class="order-footer">
+            <text class="order-total">¥{{item.totalAmount}}</text>
+            <view class="order-actions">
+              <text class="action-detail" bindtap="viewOrderDetail" data-id="{{item.id}}">查看详情</text>
+              <text class="action-review" wx:if="{{item.status === '已完成'}}" bindtap="reviewOrder" data-id="{{item.id}}">评价</text>
+            </view>
+          </view>
+        </view>
+      </block>
+      
+      <!-- 空状态提示 -->
+      <view wx:if="{{orders.length === 0}}" class="empty-orders">
+        <image src="/images/empty-order.png" mode="aspectFit" class="empty-image"></image>
+        <text class="empty-text">暂无历史订单</text>
+        <button class="primary-btn" bindtap="goShopping">去下单</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,11 @@
+<view class="container" style="padding:80rpx 24rpx; text-align:center;">
+  <view style="width:160rpx;height:160rpx;border-radius:9999rpx;background:#E6FFFB;margin:0 auto 24rpx;display:flex;align-items:center;justify-content:center;">
+    <text style="font-size:64rpx;color:#00B42A;">✔</text>
+  </view>
+  <text style="font-size:32rpx;font-weight:700;">订单提交成功</text>
+  <text class="muted" style="display:block;margin-top:12rpx;">我们已向供应商发送邮件，请等待确认</text>
+  <view style="height:32rpx"/>
+  <button class="btn btn-primary" bindtap="toOrders">查看我的订单</button>
+  <view style="height:16rpx"/>
+  <button class="btn btn-plain" bindtap="continueBuy">继续下单</button>
+</view>
