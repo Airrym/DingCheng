@@ -9,14 +9,14 @@
     
     <view class="profile-header">
       <view class="avatar">
-        <icon type="user" size="32" color="#fff"></icon>
+        <image src="/assets/tab/user.png" mode="aspectFill" class="avatar-img"></image>
       </view>
       <view class="profile-info">
         <text class="name">{{profileInfo.name}}</text>
         <text class="position-ship">{{profileInfo.position}} | {{profileInfo.ship}}</text>
       </view>
       <button class="edit-btn" bindtap="goToEditProfile" hover-class="none">
-        <icon type="edit" size="16" color="#fff"></icon>
+        <image src="/assets/tab/编辑.png" mode="aspectFit" class="edit-icon"></image>
       </button>
     </view>
   </view>

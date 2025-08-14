@@ -1,5 +1,5 @@
-import { loadCart, summary } from '../../utils/cart';
-import { initialRecipient } from '../../utils/data';
+
+import { initialRecipient,loadCart,summary} from '../../utils/data';
 
 Page({
   data: { info: initialRecipient, items: [], total: 0, displayTime: '' },

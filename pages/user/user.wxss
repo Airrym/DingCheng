@@ -51,17 +51,27 @@
     z-index: 1;
   }
   
-  .avatar {
+  /* 修改avatar相关样式 */
+.avatar {
     width: 56px;
     height: 56px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin-right: 12px;
+    overflow: hidden;
+    display: flex;          /* 新增 */
+    align-items: center;    /* 垂直居中 */
+    justify-content: center;/* 水平居中 */
   }
   
+  .avatar-img {
+    width: 90%;           /* 或根据需求调整比例 */
+    height: 90%;
+    display: block;
+    object-fit: cover;     /* 保持比例填充容器 */
+    object-position: center center; /* 明确指定居中 */
+  }
+
   .profile-info {
     flex: 1;
   }
@@ -93,6 +103,12 @@
   
   .edit-btn::after {
     border: none;
+  }
+  
+  .edit-icon {
+    width: 16px;
+    height: 16px;
+    display: block;
   }
   
   /* 信息卡片样式 */
@@ -227,9 +243,9 @@
     background-color: #F2F3F5;
     color: #86909C;
   }
-
-/* 行内编辑按钮样式 */
-.info-value-container {
+  
+  /* 行内编辑按钮样式 */
+  .info-value-container {
     display: flex;
     align-items: center;
   }

@@ -27,5 +27,5 @@
     </view>
   </view>
 
-  <button class="btn btn-secondary" bindtap="submit">确认提交</button>
+  <button class="btn btn-secondary" style="background-color:#ff7d00" bindtap="submit">确认提交</button>
 </view>

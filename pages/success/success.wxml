@@ -5,7 +5,7 @@
   <text style="font-size:32rpx;font-weight:700;">订单提交成功</text>
   <text class="muted" style="display:block;margin-top:12rpx;">我们已向供应商发送邮件，请等待确认</text>
   <view style="height:32rpx"/>
-  <button class="btn btn-primary" bindtap="toOrders">查看我的订单</button>
+  <button class="btn btn-primary" style="background-color: #0a3d91;" bindtap="toOrders">查看我的订单</button>
   <view style="height:16rpx"/>
-  <button class="btn btn-plain" bindtap="continueBuy">继续下单</button>
+  <button class="btn btn-plain" style="color: #0a3d91; border: 1px solid#0a3d91; font-size: 18px;" bindtap="continueBuy">继续下单</button>
 </view>

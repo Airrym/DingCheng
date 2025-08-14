@@ -4,9 +4,10 @@
     "pages/order/order",
     "pages/cart/cart",
     "pages/user/user",
-    "pages/edit/edit-profile",
+    "pages/edit-profile/edit-profile",
     "pages/confirm/confirm",
-    "pages/success/success"
+    "pages/success/success",
+    "pages/order-detail/order-detail"
   ],
   "window": {
     "navigationBarTitleText": "鼎成DYNCHENG",

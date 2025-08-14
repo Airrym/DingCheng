@@ -1,51 +1,42 @@
-<view class="cart-page">
-  <!-- 购物车头部 -->
-  <view class="cart-header">
-    <view class="header-left">
-      <checkbox class="select-all-checkbox" checked="{{selectAll}}" bindchange="toggleSelectAll" />
-      <text class="header-title">购物车</text>
+<view class="container" style="padding:24rpx 24rpx 120rpx;">
+  <view class="row" style="margin-bottom:16rpx;">
+    <view class="row">
+      <checkbox checked="{{allSelected}}" bindchange="toggleAll"/>
+      <text style="margin-left:8rpx;font-weight:700;color:var(--primary);">购物车</text>
     </view>
-    <view class="header-right" bindtap="clearCart">
-      <image src="/images/icon-trash.png" class="trash-icon" />
-      <text>清空</text>
-    </view>
+    <button class="tag" bindtap="clear">清空</button>
   </view>
 
-  <!-- 空购物车状态 -->
-  <view class="empty-cart" wx:if="{{cart.length === 0}}">
-    <image src="/images/icon-empty-cart.png" class="empty-icon" />
-    <text class="empty-text">购物车是空的</text>
-    <text class="empty-hint">快去添加商品吧</text>
-    <button class="go-shopping-btn" bindtap="goShopping">去下单</button>
+  <view wx:if="{{cart.length===0}}" class="card" style="text-align:center;padding:80rpx 24rpx;">
+    <text class="muted">购物车是空的</text>
+    <view style="height:16rpx"/>
+    <button class="btn btn-plain" bindtap="goOrder">去下单</button>
   </view>
 
-  <!-- 购物车商品列表 -->
-  <scroll-view class="cart-items" scroll-y wx:if="{{cart.length > 0}}">
-    <view class="cart-item" wx:for="{{cart}}" wx:key="id">
-      <checkbox class="item-checkbox" checked="{{item.selected}}" bindchange="toggleItemSelect" data-id="{{item.id}}" />
-      
-      <view class="item-info">
-        <text class="item-name">{{item.name}}</text>
-        <text class="item-spec">{{item.unit}} · ¥{{item.price}}</text>
-      </view>
-      
-      <view class="item-actions">
-        <view class="quantity-control">
-          <button class="quantity-btn decrease" bindtap="decreaseQuantity" data-id="{{item.id}}">-</button>
-          <text class="quantity">{{item.quantity}}</text>
-          <button class="quantity-btn increase" bindtap="increaseQuantity" data-id="{{item.id}}">+</button>
+  <view wx:else class="card">
+    <block wx:for="{{cart}}" wx:key="id">
+      <view class="row" style="padding:20rpx 0;border-bottom:1px solid #eee;">
+        <checkbox checked="{{item.selected}}" data-id="{{item.id}}" bindchange="toggle"/>
+        <view style="flex:1;margin:0 16rpx;">
+          <text style="font-weight:600;">{{item.name}}</text>
+          <text class="muted" style="display:block;font-size:24rpx;">{{item.unit}}</text>
         </view>
-        <image src="/images/icon-trash.png" class="remove-btn" bindtap="removeItem" data-id="{{item.id}}" />
+        <view style="display:flex;align-items:center;">
+          <button class="tag" data-id="{{item.id}}" data-delta="-1" bindtap="step">－</button>
+          <text style="width:72rpx;text-align:center;">{{item.quantity}}</text>
+          <button class="tag" data-id="{{item.id}}" data-delta="1" bindtap="step">＋</button>
+        </view>
+        <text style="width:140rpx;text-align:right;color:var(--primary);font-weight:600;">¥{{item.price*item.quantity}}</text>
+        <button class="tag" style="margin-left:12rpx;" data-id="{{item.id}}" bindtap="remove">删除</button>
       </view>
-    </view>
-  </scroll-view>
+    </block>
+  </view>
 
-  <!-- 结算区域 -->
-  <view class="checkout-bar" wx:if="{{cart.length > 0}}">
-    <view class="checkout-info">
-      <text>已选 {{selectedCount}} 件商品：</text>
-      <text class="total-amount">¥{{totalAmount}}</text>
+  <view wx:if="{{cart.length>0}}" style="position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #eee;padding:16rpx 24rpx;">
+    <view class="row">
+      <text>已选 {{sum.count}} 件</text>
+      <text style="color:var(--primary);font-weight:700;">合计 ¥{{sum.amount}}</text>
     </view>
-    <button class="checkout-btn" bindtap="goToCheckout">提交订单</button>
+    <button class="btn btn-primary" style="margin-top:16rpx;color:#fff;background-color: #0a3d91;" bindtap="submit">提交订单</button>
   </view>
 </view>

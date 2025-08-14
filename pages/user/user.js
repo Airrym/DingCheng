@@ -77,7 +77,7 @@ Page({
     goToEditProfile: function() {
       // 传递当前用户数据到编辑页面
       wx.navigateTo({
-        url: '/pages/edit/edit-profile',
+        url: '/pages/edit-profile/edit-profile',
         events: {
           // 接收从编辑页面返回的数据
           acceptProfileUpdate: (data) => {
@@ -103,11 +103,15 @@ Page({
     // 查看订单详情
     viewOrderDetail: function(e) {
       const orderId = e.currentTarget.dataset.id;
+      const order = this.data.orders.find(o => o.id === orderId);
       wx.navigateTo({
-        url: `/pages/order-detail/order-detail?id=${orderId}`
+        url: `/pages/order-detail/order-detail`,
+        success: (res) => {
+          res.eventChannel.emit('sendOrderData', order);
+        }
       });
     },
-  
+    
     // 评价订单
     reviewOrder: function(e) {
       const orderId = e.currentTarget.dataset.id;
