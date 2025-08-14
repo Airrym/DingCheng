@@ -1,52 +1,115 @@
-<!-- pages/order-detail/order-detail.wxml -->
-<view class="page-container">
-  <view class="header">
-    <view class="back-btn" bindtap="navigateBack">
-      <image src="/assets/icon/back.png" mode="aspectFit"></image>
-    </view>
-    <text class="title">订单详情</text>
-  </view>
-
-  <view class="order-card">
-    <view class="order-header">
-      <text class="order-number">订单 #{{order.id}}</text>
-      <text class="order-date">{{order.date}}</text>
-      <text class="order-status {{order.statusClass}}">{{order.status}}</text>
-    </view>
-
-    <view class="order-body">
-      <text class="section-title">商品信息</text>
-      <view class="product-list">
-        <view class="product-item" wx:for="{{order.products}}" wx:key="name">
-          <text class="product-name">{{item.name}}</text>
-          <text class="product-quantity">{{item.quantity}} {{item.unit}}</text>
-        </view>
+<view class="container">
+  <!-- 订单基本信息 -->
+  <view class="card">
+    <view class="flex-between mb-20">
+      <view>
+        <text class="order-number">订单 #{{order.id}}</text>
+        <text class="order-date">{{order.date}}</text>
       </view>
-
-      <text class="section-title">收货信息</text>
-      <view class="address-info">
-        <text>{{profileInfo.name}} {{profileInfo.phone}}</text>
-        <text>{{profileInfo.address}}</text>
+      <view class="status-badge {{order.statusClass}}">{{order.status}}</view>
+    </view>
+    
+    <view class="grid-2">
+      <view>
+        <text class="label">订单类型</text>
+        <text>{{order.type}}</text>
       </view>
-
-      <view class="order-summary">
-        <view class="summary-row">
-          <text>商品总价</text>
-          <text>¥{{order.totalAmount}}</text>
-        </view>
-        <view class="summary-row">
-          <text>运费</text>
-          <text>¥0</text>
-        </view>
-        <view class="summary-row total">
-          <text>实付款</text>
-          <text>¥{{order.totalAmount}}</text>
-        </view>
+      <view>
+        <text class="label">订单状态</text>
+        <text>{{order.paymentMethod}}</text>
+      </view>
+      <view>
+        <text class="label">航次信息</text>
+        <text>{{order.voyage}}</text>
+      </view>
+      <view>
+        <text class="label">订单总价</text>
+        <text class="price">¥{{order.totalAmount}}</text>
       </view>
     </view>
   </view>
-
-  <view class="action-buttons" wx:if="{{order.status === '已完成'}}">
-    <button class="btn review-btn" bindtap="reviewOrder">评价订单</button>
+  
+  <!-- 收货信息 -->
+  <view class="card">
+    <view class="section-title">收货信息</view>
+    <view class="info-item">
+      <text class="label">联系人：</text>
+      <text>{{order.contactPerson}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">联系电话：</text>
+      <text>{{order.contactPhone}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">电子邮箱：</text>
+      <text>{{order.contactEmail}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">船舶名称：</text>
+      <text>{{order.shipName}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">停靠港口：</text>
+      <text>{{order.port}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">泊位信息：</text>
+      <text>{{order.berth}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">预计靠港时间：</text>
+      <text>{{order.arrivalTime}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">预计离港时间：</text>
+      <text>{{order.departureTime}}</text>
+    </view>
+  </view>
+  
+  <!-- 商品明细 -->
+  <view class="card">
+    <view class="section-title">商品明细</view>
+    <view class="product-list">
+      <block wx:for="{{order.products}}" wx:key="name">
+        <view class="product-item">
+          <view>
+            <text class="product-name">{{item.name}}</text>
+            <text class="product-unit">{{item.quantity}}{{item.unit}}</text>
+          </view>
+          <text class="product-price">¥{{item.total}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  
+  <!-- 物流信息 -->
+  <view class="card">
+    <view class="section-title">订单跟踪</view>
+    <view class="timeline">
+      <view class="timeline-line"></view>
+      <block wx:for="{{order.logistics}}" wx:key="time">
+        <view class="timeline-item {{index === order.logistics.length - 1 ? 'active' : ''}}">
+          <view class="timeline-dot"></view>
+          <view class="timeline-content">
+            <text class="timeline-status">{{item.status}}</text>
+            <text class="timeline-time">{{item.time}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  
+  <!-- 操作按钮 -->
+  <view class="action-buttons">
+    <block wx:for="{{order.actions}}" wx:key="text">
+      <button 
+        class="action-btn {{item.class}}" 
+        bindtap="handleAction" 
+        data-action="{{item.action}}" 
+        data-order-id="{{order.id}}"
+      >
+        {{item.text}}
+      </button>
+    </block>
   </view>
 </view>

@@ -149,6 +149,9 @@ Page({
         });
         return;
       }
+      wx.navigateTo({
+        url: '/pages/order-detail/order-detail?orderId=' + orderId
+      })
   
       wx.navigateTo({
         url: '/pages/order-detail/order-detail',
