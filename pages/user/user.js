@@ -49,12 +49,11 @@ Page({
     },
   
     onLoad: function(options) {
-      // 从缓存加载用户数据
       this.loadUserProfile();
+      this.loadOrderData();
     },
   
     onShow: function() {
-      // 页面显示时检查是否有更新的用户数据
       this.loadUserProfile();
     },
   
@@ -68,26 +67,58 @@ Page({
       }
     },
   
+    // 加载订单数据（可从缓存或API）
+    loadOrderData: function() {
+      const cachedOrders = wx.getStorageSync('userOrders');
+      if (cachedOrders && cachedOrders.length > 0) {
+        this.setData({ orders: cachedOrders });
+      } else {
+        // 如果没有缓存，可以调用API获取
+        this.fetchOrderData();
+      }
+    },
+  
+    // 从API获取订单数据
+    fetchOrderData: function() {
+      wx.showLoading({
+        title: '加载订单中...',
+      });
+  
+      // 模拟API请求
+      setTimeout(() => {
+        // 这里应该是真实的API请求
+        // wx.request({
+        //   url: 'your-api-url',
+        //   success: (res) => {
+        //     this.processOrderData(res.data);
+        //   }
+        // });
+  
+        // 模拟数据
+        const orders = this.data.orders; // 使用初始数据
+        this.setData({ orders });
+        wx.setStorageSync('userOrders', orders);
+        wx.hideLoading();
+      }, 800);
+    },
+  
     // 格式化商品显示
     formatProducts: function(products) {
-      return products.map(p => `${p.name} x${p.quantity}`).join('，');
+      if (!products || products.length === 0) return '无商品信息';
+      return products.map(p => `${p.name} x${p.quantity}${p.unit}`).join('，');
     },
   
     // 跳转到编辑个人信息页面
     goToEditProfile: function() {
-      // 传递当前用户数据到编辑页面
       wx.navigateTo({
         url: '/pages/edit-profile/edit-profile',
         events: {
-          // 接收从编辑页面返回的数据
           acceptProfileUpdate: (data) => {
-            this.setData({
-              profileInfo: data
-            });
+            this.setData({ profileInfo: data });
+            wx.setStorageSync('userProfile', data);
           }
         },
         success: (res) => {
-          // 发送当前用户数据到编辑页面
           res.eventChannel.emit('sendProfileData', this.data.profileInfo);
         }
       });
@@ -96,51 +127,74 @@ Page({
     // 查看全部订单
     viewAllOrders: function() {
       wx.navigateTo({
-        url: '/pages/order-list/order-list'
+        url: '/pages/order-list/order-list',
+        success: (res) => {
+          res.eventChannel.emit('sendOrderData', {
+            orders: this.data.orders,
+            profileInfo: this.data.profileInfo
+          });
+        }
       });
     },
   
     // 查看订单详情
     viewOrderDetail: function(e) {
       const orderId = e.currentTarget.dataset.id;
+      const order = this.data.orders.find(item => item.id === orderId);
+      
+      if (!order) {
+        wx.showToast({
+          title: '订单不存在',
+          icon: 'none'
+        });
+        return;
+      }
+  
       wx.navigateTo({
-        url: `/pages/order-detail/order-detail?id=${orderId}`
+        url: '/pages/order-detail/order-detail',
+        success: (res) => {
+          res.eventChannel.emit('sendOrderData', {
+            order: order,
+            profileInfo: this.data.profileInfo
+          });
+        }
       });
     },
   
     // 评价订单
     reviewOrder: function(e) {
       const orderId = e.currentTarget.dataset.id;
-      wx.showToast({
-        title: `评价功能待实现，订单 #${orderId}`,
-        icon: 'none'
+      const order = this.data.orders.find(item => item.id === orderId);
+      
+      if (!order) {
+        wx.showToast({
+          title: '订单不存在',
+          icon: 'none'
+        });
+        return;
+      }
+  
+      wx.navigateTo({
+        url: `/pages/review/review?orderId=${orderId}`,
+        success: (res) => {
+          res.eventChannel.emit('sendOrderData', {
+            order: order,
+            profileInfo: this.data.profileInfo
+          });
+        }
       });
     },
   
-    // 加载用户数据（API方式）
-    loadUserData: function() {
-      // 这里可以调用API获取用户数据
-      wx.showLoading({
-        title: '加载中...',
+    // 去购物
+    goShopping: function() {
+      wx.switchTab({
+        url: '/pages/shop/shop'
       });
-      
-      // 模拟API请求
-      setTimeout(() => {
-        // 假设从API获取的数据
-        const userData = {
-          name: "张明",
-          position: "大副",
-          ship: "中远海运-星辰号",
-          phone: "138****5678",
-          email: "zhangming@ship.com",
-          address: "新加坡港，T3泊位"
-        };
-        
-        this.setData({
-          profileInfo: userData
-        });
-        
-        wx.hideLoading();
-      }, 500);
+    },
+  
+    // 刷新数据
+    onPullDownRefresh: function() {
+      this.fetchOrderData();
+      wx.stopPullDownRefresh();
     }
-  })
+  });
