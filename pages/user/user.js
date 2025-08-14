@@ -55,6 +55,7 @@ Page({
   
     onShow: function() {
       this.loadUserProfile();
+      this.loadOrderData();
     },
   
     // 从缓存加载用户资料
@@ -63,7 +64,8 @@ Page({
       if (userProfile) {
         this.setData({
           profileInfo: userProfile
-        });
+    });
+
       }
     },
   
