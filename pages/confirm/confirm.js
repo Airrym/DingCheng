@@ -1,4 +1,4 @@
-import { initialRecipient,loadCart, summary  } from '../../utils/data';
+import { initialRecipient, loadCart, summary, saveCart } from '../../utils/data';
 
 Page({
   data: { info: initialRecipient, items: [], total: 0, displayTime: '' },
@@ -10,6 +10,25 @@ Page({
     this.setData({ items, total: amount, displayTime });
   },
   submit(){
+    const { items, total } = this.data;
+    const now = new Date();
+    const id = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}${String(now.getHours()).padStart(2,'0')}${String(now.getMinutes()).padStart(2,'0')}${String(now.getSeconds()).padStart(2,'0')}`;
+    const date = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+    const order = {
+      id,
+      date,
+      status: '待发货',
+      statusClass: 'bg-yellow-100',
+      products: items.map(x=>({ name: x.name, quantity: x.quantity, unit: x.unit })),
+      totalAmount: total
+    };
+    const orders = wx.getStorageSync('userOrders') || [];
+    orders.unshift(order);
+    wx.setStorageSync('userOrders', orders);
+
+    const cart = loadCart().filter(x=>!x.selected);
+    saveCart(cart);
+
     wx.navigateTo({ url:'/pages/success/success' });
   }
-});
+  });
