@@ -1,4 +1,3 @@
-
 import { initialRecipient,loadCart,summary} from '../../utils/data';
 
 Page({
