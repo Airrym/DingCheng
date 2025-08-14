@@ -152,16 +152,6 @@ Page({
       wx.navigateTo({
         url: '/pages/order-detail/order-detail?orderId=' + orderId
       })
-  
-    //   wx.navigateTo({
-    //     url: '/pages/order-detail/order-detail',
-    //     success: (res) => {
-    //       res.eventChannel.emit('sendOrderData', {
-    //         order: order,
-    //         profileInfo: this.data.profileInfo
-    //       });
-    //     }
-    //   });
     },
   
     // 评价订单
