@@ -8,7 +8,7 @@ page { background: #F5F7FA; color: #1D2129; }
 .btn-primary { background: var(--primary); color:#fff; }
 .btn-secondary { background: var(--secondary); color:#fff; }
 .btn-plain { background:#fff; border:1px solid var(--primary); color: var(--primary); }
-.row { display:flex; align-items:center; }
+.row { display:flex; align-items:center;}
 .muted { color:#86909C; }
 .badge { min-width: 28rpx; height: 28rpx; line-height: 28rpx; font-size: 20rpx; border-radius: 9999rpx; text-align:center; padding: 0 8rpx; }
 .tag { font-size: 20rpx; padding: 6rpx 12rpx; border-radius: 9999rpx; background:#f3f4f6; color:#4E5969; }

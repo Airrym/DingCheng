@@ -1,144 +1,187 @@
 /* 搜索栏（可选） */
 .search-bar {
-  padding: 12rpx 24rpx;
-  background: #ffffff;
+    padding: 12rpx 24rpx;
+    background: #ffffff;
 }
+
 .search-input {
-  height: 72rpx;
-  line-height: 72rpx;
-  border-radius: 36rpx;
-  background: #f6f7f9;
-  padding: 0 28rpx;
-  font-size: 28rpx;
+    height: 72rpx;
+    line-height: 72rpx;
+    border-radius: 36rpx;
+    background: #f6f7f9;
+    padding: 0 28rpx;
+    font-size: 28rpx;
 }
 
 /* 分类横向滚动 */
 .category-bar {
-  background: #ffffff;
-  padding: 12rpx 0;
-  border-bottom: 1rpx solid #f0f2f5;
+    background: #ffffff;
+    padding: 12rpx 0;
+    border-bottom: 1rpx solid #f0f2f5;
 }
+
 .cat-scroll {
-  white-space: nowrap;
-  display: flex;
-  flex-direction: row;
-  padding: 0 16rpx;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    padding: 0 16rpx;
 }
+
 .cat-item {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12rpx 28rpx;
-  margin-right: 16rpx;
-  height: 64rpx;
-  border-radius: 32rpx;
-  background: #f6f7f9;
-  color: #333;
-  font-size: 26rpx;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12rpx 28rpx;
+    margin-right: 16rpx;
+    height: 64rpx;
+    border-radius: 32rpx;
+    background: #f6f7f9;
+    color: #333;
+    font-size: 26rpx;
 }
-.cat-item:last-child { margin-right: 0; }
+
+.cat-item:last-child {
+    margin-right: 0;
+}
+
 .cat-item.active {
-  background: #0A3D91;
-  color: #fff;
+    background: #0A3D91;
+    color: #fff;
 }
-.cat-text { line-height: 40rpx; }
+
+.cat-text {
+    line-height: 40rpx;
+}
 
 /* 商品列表示例（你已有就无需改） */
-.goods-list { padding: 16rpx; }
+.goods-list {
+    padding: 16rpx;
+}
+
 .goods-card {
-  position: relative;
-  display: flex;
-  padding: 20rpx;
-  margin-bottom: 16rpx;
-  background: #fff;
-  border-radius: 16rpx;
+    position: relative;
+    display: flex;
+    padding: 20rpx;
+    margin-bottom: 16rpx;
+    background: #fff;
+    border-radius: 16rpx;
 }
+
 .goods-img {
-  width: 160rpx;
-  height: 160rpx;
-  border-radius: 12rpx;
-  background: #f6f7f9;
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 12rpx;
+    background: #f6f7f9;
 }
+
 .goods-info {
-  flex: 1;
-  padding: 0 20rpx;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+    flex: 1;
+    padding: 0 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
-.goods-title { font-size: 30rpx; color: #222; }
-.goods-sub { font-size: 26rpx; color: #ff4d4f; }
+
+.goods-title {
+    font-size: 30rpx;
+    color: #222;
+}
+
+.goods-sub {
+    font-size: 26rpx;
+    color: #ff4d4f;
+}
+
 .add-btn {
-  height: 64rpx;
-  line-height: 64rpx;
-  padding: 0 28rpx;
-  border-radius: 32rpx;
-  background: #0A3D91;
-  color: #fff;
-  font-size: 26rpx;
+    height: 64rpx;
+    line-height: 64rpx;
+    padding: 0 28rpx;
+    border-radius: 32rpx;
+    background: #0A3D91;
+    color: #fff;
+    font-size: 26rpx;
 }
+
 .badge {
-  position: absolute;
-  right: 20rpx;
-  top: 20rpx;
-  min-width: 36rpx;
-  height: 36rpx;
-  padding: 0 10rpx;
-  border-radius: 18rpx;
-  background: #ff4d4f;
-  color: #fff;
-  font-size: 22rpx;
-  text-align: center;
-  line-height: 36rpx;
+    position: absolute;
+    right: 20rpx;
+    top: 20rpx;
+    min-width: 36rpx;
+    height: 36rpx;
+    padding: 0 10rpx;
+    border-radius: 18rpx;
+    background: #ff4d4f;
+    color: #fff;
+    font-size: 22rpx;
+    text-align: center;
+    line-height: 36rpx;
 }
+
 /* 分段按钮：最小侵入，仅影响 seg-btn 类 */
 .seg-btn {
-  flex: 1;                 /* 在你的 row 里平分宽度 */
-  height: 72rpx;
-  line-height: 72rpx;
-  border: 1rpx solid #0A3D91;
-  background: #FFFFFF;
-  color: #0A3D91;
-  font-size: 28rpx;
-  font-weight: 600;
-  border-radius: 12rpx 0 0 12rpx; /* 左按钮圆角 */
-  margin-right: 0;          /* 防止额外间距 */
+    flex: 1;
+    /* 在你的 row 里平分宽度 */
+    height: 72rpx;
+    line-height: 72rpx;
+    border: 1rpx solid #0A3D91;
+    background: #FFFFFF;
+    color: #0A3D91;
+    font-size: 28rpx;
+    font-weight: 600;
+    border-radius: 12rpx 0 0 12rpx;
+    /* 左按钮圆角 */
+    margin-right: 0;
+    /* 防止额外间距 */
 }
+
 .seg-btn.right {
-  border-radius: 0 12rpx 12rpx 0; /* 右按钮圆角 */
-  border-left-width: 0;           /* 两按钮中间合并边框 */
+    border-radius: 0 12rpx 12rpx 0;
+    /* 右按钮圆角 */
+    border-left-width: 0;
+    /* 两按钮中间合并边框 */
 }
+
 .seg-btn.active {
-  background: #0A3D91;
-  color: #FFFFFF;
+    background: #0A3D91;
+    color: #FFFFFF;
 }
 
 /* 注意事项卡片（不影响其它卡片样式） */
 .notice {
-  background: #F5F9FF;
-  border: 1rpx solid #E6EEFF;
-  border-radius: 12rpx;
-  padding: 20rpx;
+    background: #F5F9FF;
+    border: 1rpx solid #E6EEFF;
+    border-radius: 12rpx;
+    padding: 20rpx;
 }
+
 .notice-title {
-  display: flex;
-  align-items: center;
-  margin-bottom: 12rpx;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12rpx;
 }
+
 .notice-title-text {
-  margin-left: 8rpx;
-  font-size: 28rpx;
-  color: #1B2A4E;
-  font-weight: 600;
+    margin-left: 8rpx;
+    font-size: 28rpx;
+    color: #1B2A4E;
+    font-weight: 600;
 }
+
 .notice-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 8rpx;
-  padding: 8rpx 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 8rpx;
+    padding: 8rpx 0;
 }
+
 .notice-text {
-  font-size: 26rpx;
-  color: #22304D;
-  line-height: 38rpx;
+    font-size: 26rpx;
+    color: #22304D;
+    line-height: 38rpx;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
