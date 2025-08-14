@@ -187,6 +187,7 @@
   
   .action-btn:last-child {
     margin-bottom: 0;
+    border:1px solid #f97f7f;
   }
   
   .action-btn:hover {
@@ -223,7 +224,7 @@
   }
   
   .border-danger {
-    border-color: #F53F3F;
+    border-color: #f87777;
   }
   
   .text-danger {

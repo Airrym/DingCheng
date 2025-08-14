@@ -107,16 +107,17 @@ Page({
       };
   
       const order = orders[orderId];
+      console.log(order);
       if (order) {
-        this.setData({ order });
+        this.setData({ order: order });
       } else {
-        wx.showToast({
-          title: '订单不存在',
-          icon: 'none'
-        });
-        setTimeout(() => {
-          wx.navigateBack();
-        }, 1500);
+        // wx.showToast({
+        //   title: '订单不存在',
+        //   icon: 'none'
+        // });
+        // setTimeout(() => {
+        //   wx.navigateBack();
+        // }, 1500);
       }
     },
   
