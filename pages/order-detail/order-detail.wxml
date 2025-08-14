@@ -1,0 +1,46 @@
+<view class="container">
+  <!-- 订单基本信息 -->
+  <view class="card">
+    <view class="header">
+      <view>
+        <text class="order-no">订单 #{{orders.id}}</text>
+        <text class="order-date">{{orders.date}}</text>
+      </view>
+      <view class="status">{{orders.status}}</view>
+    </view>
+    <view class="grid">
+      <view>
+        <text class="label">订单类型</text>
+        <text>{{orders.type}}</text>
+      </view>
+      <view>
+        <text class="label">订单总价</text>
+        <text class="price">¥{{orders.totalAmount}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 收货信息 -->
+  <view class="card">
+    <text class="title">收货信息</text>
+    <view><text class="label">联系人：</text>{{orders.contact}}</view>
+    <view><text class="label">联系电话：</text>{{orders.phone}}</view>
+    <!-- 其他收货信息 -->
+  </view>
+
+  <!-- 商品明细 -->
+  <view class="card">
+    <text class="title">商品明细</text>
+    <block wx:for="{{orders.products}}" wx:key="name">
+      <view>{{item.name}} x{{item.quantity}} {{item.unit}}</view>
+    </block>
+  </view>
+
+  <!-- 物流信息 -->
+  <view class="card">
+    <text class="title">订单跟踪</text>
+    <block wx:for="{{orders.logistics}}" wx:key="time">
+      <view>{{item.time}} - {{item.status}}</view>
+    </block>
+  </view>
+</view>
