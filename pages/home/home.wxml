@@ -1,7 +1,9 @@
 <view class="container" style="padding:24rpx 24rpx 120rpx;">
   <view class="card" style="margin-bottom:24rpx;">
-    <view class="row" style="margin-bottom:16rpx;">
-      <text style="color:var(--primary);font-weight:700;font-size:32rpx; color:#0a3d91;">公司简介</text>
+    <view class="row" style="margin-bottom:10rpx; display:flex; align-items:center;">
+      <!-- 添加的小图标 -->
+      <image src="/assets/tab/公司网络.png" mode="aspectFit" style="width:40rpx;height:40rpx;margin-right:8rpx;"/>
+      <text style="color:var(--primary);font-weight:700;font-size:32rpx; color:#0a3d91; flex-shrink:0;">公司简介</text>
     </view>
     <text class="muted" style="font-size:26rpx;line-height:1.7; color: #000;">
       我们是东南亚航运业领先的综合航运服务提供商。核心服务涵盖船舶餐饮、船舶维修、备件供应和船体清洁。凭借多年行业经验和专业团队，确保每艘船舶在海上安全顺畅航行。
@@ -12,35 +14,35 @@
     <text class="muted" style="font-size:24rpx;display:block;margin-top:8rpx; color: #000;">TEL: +65 91886559 （微信同号)</text>
   </view>
 
+  <!-- 下单流程部分保持不变 -->
   <view class="card" style="margin-bottom:24rpx;">
     <text style="color:var(--primary);font-weight:700;font-size:32rpx; color: #0a3d91;">下单流程</text>
     <view class="divider"/>
-    <!-- WXML -->
-<view class="steps-container">
-  <view class="step-item">
-    <view class="step-number">1</view>
-    <view class="step-content">
-      <view class="step-title">选择商品与数量</view>
-      <view class="step-desc">船舶集采或个人采购</view>
+    <view class="steps-container">
+      <view class="step-item">
+        <view class="step-number">1</view>
+        <view class="step-content">
+          <view class="step-title">选择商品与数量</view>
+          <view class="step-desc">船舶集采或个人采购</view>
+        </view>
+      </view>
+      
+      <view class="step-item">
+        <view class="step-number">2</view>
+        <view class="step-content">
+          <view class="step-title">确认配送信息</view>
+          <view class="step-desc">港口、时间与联系人</view>
+        </view>
+      </view>
+      
+      <view class="step-item">
+        <view class="step-number">3</view>
+        <view class="step-content">
+          <view class="step-title">提交并等待配送</view>
+          <view class="step-desc">我们会按时送达指定港口</view>
+        </view>
+      </view>
     </view>
-  </view>
-  
-  <view class="step-item">
-    <view class="step-number">2</view>
-    <view class="step-content">
-      <view class="step-title">确认配送信息</view>
-      <view class="step-desc">港口、时间与联系人</view>
-    </view>
-  </view>
-  
-  <view class="step-item">
-    <view class="step-number">3</view>
-    <view class="step-content">
-      <view class="step-title">提交并等待配送</view>
-      <view class="step-desc">我们会按时送达指定港口</view>
-    </view>
-  </view>
-</view>
   </view>
 
   <button class="btn btn-primary" bindtap="goOrder" style="color: #fff; background-color: #22509c;">开始下单</button>
