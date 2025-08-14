@@ -77,7 +77,7 @@ Page({
     goToEditProfile: function() {
       // 传递当前用户数据到编辑页面
       wx.navigateTo({
-        url: '/pages/edit/edit-profile',
+        url: '/pages/edit-profile/edit-profile',
         events: {
           // 接收从编辑页面返回的数据
           acceptProfileUpdate: (data) => {
