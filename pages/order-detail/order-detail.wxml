@@ -2,7 +2,6 @@
 <view class="page-container">
   <view class="header">
     <view class="back-btn" bindtap="navigateBack">
-      <image src="/assets/icon/back.png" mode="aspectFit"></image>
     </view>
     <text class="title">订单详情</text>
   </view>
