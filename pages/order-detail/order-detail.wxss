@@ -168,9 +168,9 @@
   }
   
   .action-buttons {
-    background-color: #fff;
+    background-color: #0a3d91;
     border-radius: 16rpx;
-    padding: 30rpx;
+    padding: 45rpx;
     margin-top: 20rpx;
   }
   
