@@ -1,4 +1,4 @@
-import { loadCart, saveCart, add as addCart, remove as rm, updateSelectAll, toggle as tg, summary } from '../../utils/data';
+import { loadCart, saveCart, add as addCart, remove as rm, updateSelectAll, toggle as tg, summary } from '../../utils/cart';
 
 Page({
   data: { cart: [], allSelected: false, sum: { count:0, amount:0 } },

@@ -1,5 +1,5 @@
 import { categories, products } from '../../utils/data';
-import { loadCart, add as addCart } from '../../utils/data';
+import { loadCart, add as addCart } from '../../utils/cart';
 
 Page({
   data: {
