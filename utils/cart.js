@@ -1,6 +1,16 @@
 /* === 购物车工具函数 === */
 const KEY = 'dc_cart';
-
+const PT_KEY   = 'cart_purchaseType'; // 采购类型单独存储：'bulk' | 'personal'
+export function getPurchaseType() {
+  return wx.getStorageSync(PT_KEY) || null; // 没设置过返回 null
+}
+export function setPurchaseType(type) {
+  // 可选：做个校验
+  if (type !== 'bulk' && type !== 'personal') {
+    console.warn('Unknown purchaseType:', type);
+  }
+  wx.setStorageSync(PT_KEY, type);
+}
 export function loadCart() {
   try { return wx.getStorageSync(KEY) || []; } catch(e) { return []; }
 }

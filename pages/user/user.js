@@ -1,4 +1,17 @@
 // pages/user/user.js
+// 把对象 {id: order} 转数组，并按订单号倒序
+function objectToArray(obj) {
+  const list = Object.keys(obj || {}).map(k => obj[k]);
+  return list.sort((a, b) => b.id.localeCompare(a.id));
+}
+
+// 根据订单状态给出 class（你的页面在用 statusClass）
+function statusClassOf(status) {
+  if (status === '待发货') return 'bg-yellow-100';
+  if (status === '已完成') return 'bg-green-100';
+  if (status === '已取消') return 'bg-neutral-100';
+  return 'bg-neutral-100';
+}
 Page({
     data: {
       profileInfo: {
@@ -55,6 +68,7 @@ Page({
   
     onShow: function() {
       this.loadUserProfile();
+      this.loadOrderData();   // ✅ 新增：显示时也刷新
     },
   
     // 从缓存加载用户资料
@@ -68,15 +82,29 @@ Page({
     },
   
     // 加载订单数据（可从缓存或API）
-    loadOrderData: function() {
-      const cachedOrders = wx.getStorageSync('userOrders');
-      if (cachedOrders && cachedOrders.length > 0) {
-        this.setData({ orders: cachedOrders });
+    loadOrderData: function () {
+      // 统一从确认页写入的本地对象缓存读取
+      let store = wx.getStorageSync('orders');
+      if (!store || typeof store !== 'object' || Array.isArray(store)) {
+        store = {}; // 兼容保护：不存在或历史上存成了数组 → 用空对象
+      }
+    
+      // 对象 → 数组，并给每条补齐 statusClass（用于样式）
+      const list = objectToArray(store).map(o => ({
+        ...o,
+        statusClass: statusClassOf(o.status)
+      }));
+    
+      if (list.length > 0) {
+        this.setData({ orders: list });
+        // 如果你仍然有别处在读 userOrders，这里也更新一份数组缓存
+        wx.setStorageSync('userOrders', list);
       } else {
-        // 如果没有缓存，可以调用API获取
+        // 没有本地订单则走一次 fetch（保留你原有逻辑）
         this.fetchOrderData();
       }
     },
+    
   
     // 从API获取订单数据
     fetchOrderData: function() {
