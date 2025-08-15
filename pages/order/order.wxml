@@ -61,7 +61,7 @@
           <view wx:if="{{item.badge>0}}" class="badge" style="background:#FFF2E8;color:#FF7D00;margin-right:8rpx;">{{item.badge}}</view>
           <!-- 改为数量弹窗入口 -->
           <button class="btn"
-                  style="width:72rpx;height:72rpx;border-radius:9999rpx;background:#EAF2FF;color:#0A3D91;"
+                  style="width:72rpx;height:72rpx;border-radius:50%;background:#0a3d91;      color:#fff;"
                   bindtap="showQuantityModal"
                   data-id="{{item.id}}">＋</button>
         </view>
@@ -84,11 +84,11 @@
 
     <!-- 数量控制 -->
     <view style="display:flex;align-items:center;justify-content:center;gap:24rpx;margin:24rpx 0 36rpx;">
-      <button style="width:72rpx;height:72rpx;border-radius:50%;background:#f5f6f8;border:none;color:#0A3D91;font-size:40rpx;line-height:72rpx;text-align:center;"
+      <button style="width:72rpx;height:72rpx;border-radius:50%;background:#f27c6e;border:1px solid#e6ebf4;color:#0A3D91;font-size:40rpx;line-height:60rpx;text-align:center;padding-left: 13px;"
               bindtap="decQty">-</button>
       <input type="number" value="{{qty}}" bindinput="onQtyInput"
              style="width:120rpx;height:72rpx;text-align:center;border:1rpx solid #e6e8eb;border-radius:12rpx;font-size:32rpx;" />
-      <button style="width:72rpx;height:72rpx;border-radius:50%;background:#0A3D91;border:none;color:#ffffff;font-size:40rpx;line-height:72rpx;text-align:center;"
+      <button style="width:72rpx;height:72rpx;border-radius:50%;background:#0A3D91;border:none;color:#ffffff;font-size:40rpx;line-height:65rpx;text-align:center; padding-left: 12px;"
               bindtap="incQty">+</button>
     </view>
 
