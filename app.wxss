@@ -65,14 +65,7 @@ page {
     padding: 0 8rpx;
 }
 
-.tag {
-    font-size: 20rpx;
-    padding: 6rpx 12rpx;
-    border-radius: 20px;
-    margin-right: 20px;
-    background: #f3f4f6;
-    color: #4E5969;
-}
+
 
 .input {
     height: 72rpx;
