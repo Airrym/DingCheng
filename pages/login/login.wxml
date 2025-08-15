@@ -1,0 +1,36 @@
+<view class="container">
+  <view class="logo">DingCheng</view>
+
+  <view class="card">
+    <view class="field">
+      <text class="label">账号</text>
+      <input class="input" placeholder="请输入账号/手机号"
+             value="{{form.username}}" bindinput="onInput" data-key="username" />
+    </view>
+
+    <view class="field">
+      <text class="label">密码</text>
+      <input class="input" placeholder="请输入密码" password
+             value="{{form.password}}" bindinput="onInput" data-key="password" />
+    </view>
+
+    <view class="row">
+      <label class="remember">
+        <checkbox checked="{{remember}}" bindchange="toggleRemember"/> 记住我
+      </label>
+      <text class="link" bindtap="onForgot">忘记密码</text>
+    </view>
+
+    <button class="btn primary" bindtap="onLogin" loading="{{loading}}">登录</button>
+    <button class="btn wechat" open-type="getPhoneNumber" bindtap="onWxLogin">
+      微信一键登录
+    </button>
+
+    <view class="row center">
+      <text class="muted">没有账号？</text>
+      <text class="link" bindtap="onRegister">去注册</text>
+    </view>
+
+    <button class="btn ghost" bindtap="onGuest">游客访问</button>
+  </view>
+</view>

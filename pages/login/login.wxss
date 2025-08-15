@@ -1,0 +1,24 @@
+.container {
+  min-height: 100vh; box-sizing: border-box;
+  padding: 64rpx 40rpx; background: #f6f7fb;
+}
+.logo { text-align:center; font-size: 40rpx; font-weight: 600; margin: 40rpx 0 24rpx; color:#0A3D91; }
+.card {
+  background:#fff; border-radius: 24rpx; padding: 40rpx; box-shadow: 0 8rpx 24rpx rgba(0,0,0,.06);
+}
+.field { margin-bottom: 28rpx; }
+.label { font-size: 26rpx; color:#555; display:block; margin-bottom: 12rpx; }
+.input {
+  background:#f8f9fd; border: 2rpx solid #eef0f6; border-radius: 16rpx;
+  padding: 22rpx 24rpx; font-size: 28rpx;
+}
+.row { display:flex; align-items:center; justify-content:space-between; margin: 8rpx 0 24rpx; }
+.center { justify-content:center; gap: 12rpx; }
+.remember { display:flex; align-items:center; gap: 12rpx; color:#666; font-size: 26rpx; }
+.link { color:#0A3D91; font-size: 26rpx; }
+.muted { color:#999; font-size: 26rpx; }
+
+.btn { margin-top: 18rpx; border-radius: 16rpx; padding: 24rpx 0; font-size: 30rpx; }
+.primary { background:#0A3D91; color:#fff; }
+.wechat  { background:#07c160; color:#fff; }
+.ghost   { background:#fff; color:#0A3D91; border:2rpx solid #0A3D91; }
