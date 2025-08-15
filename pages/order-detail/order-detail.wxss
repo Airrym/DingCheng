@@ -182,16 +182,17 @@
     font-size: 28rpx;
     font-weight: 500;
     margin-bottom: 20rpx;
+    border: 1px solid#f76e6e;
     transition: all 0.3s ease;
   }
   
   .action-btn:last-child {
     margin-bottom: 0;
-    border:1px solid #f97f7f;
   }
   
   .action-btn:hover {
     transform: translateY(-4rpx);
+    border: none;
   }
   
   /* 状态颜色 */
@@ -242,4 +243,5 @@
   .bg-primary {
     background-color: #0A3D91;
     color: #fff;
+    border: none;
   }
